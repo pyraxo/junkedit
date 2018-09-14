@@ -1,10 +1,14 @@
-TFM:
+# junkedit
+Junk Jack PC Inventory Editor
 
-Usage:
+### Usage
+```bash
+$ junkedit.exe savefile.dat
+```
 
-    junkedit.exe savefile
+### Commands
+* `list` - Get the list of items in your inventory
+* `edit` - Interactive menu to edit a single slot in your inventory
+* `multiedit` - Interactive menu to edit multiple slots in your inventory
 
-Type list to get a list of items.
-
-Type edit and then follow the instructions to edit your inventory, the file will be saved automatically.
-Type multiedit and then follow the instructions to edit your inventory, the file will be saved automatically.
+Files are saved automatically after editing.
