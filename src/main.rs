@@ -1,3 +1,4 @@
+#![feature(rustc_private)]
 extern crate byteorder;
 
 use std::env;
@@ -83,9 +84,11 @@ fn main() {
                     }
                     let mut idv = Cursor::new(vec![buf[offset], buf[offset + 1]]);
                     let id = idv.read_u16::<LittleEndian>().unwrap();
-                    let mut amount_slice = Cursor::new(&buf[offset + 2..offset + 6]);
-                    let amount = amount_slice.read_u32::<LittleEndian>().unwrap();
-                    println!("Slot: {} ID: 0x{:x}, Amount: {} Name: {}", (offset - 0x1dc) / 12, id, amount, name_map[&id]);
+                    if id != 0xffff {
+                        let mut amount_slice = Cursor::new(&buf[offset + 2..offset + 6]);
+                        let amount = amount_slice.read_u32::<LittleEndian>().unwrap();
+                        println!("Slot: {} ID: 0x{:x}, Amount: {} Name: {}", (offset - 0x1dc) / 12, id, amount, name_map[&id]);
+                    }
                     offset += 12;
                 }
             },
